@@ -48,6 +48,7 @@
 <div class="card" id="card">
 <form name="join" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company" id="joinForm">
 <input type="hidden" name="form-name" value="join">
+<input type="hidden" name="subject" value="The Fold: a new join request">
 <p class="sr" aria-hidden="true"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
 <fieldset>
 <legend class="sr">What would you like?</legend>
@@ -62,7 +63,7 @@
 <label class="field"><span>What do you host? <em id="optional" hidden>(optional)</em></span><textarea name="hosts" id="hosts" required maxlength="1000" placeholder="A monthly dinner, game night, a big Halloween party…"></textarea></label>
 <p class="err" id="err" role="alert" hidden>That didn't go through. Please try again, or write to <a href="mailto:hello@thefoldapp.com">hello@thefoldapp.com</a>.</p>
 <button class="btn" type="submit" id="submit">Request an invite</button>
-<p class="fine">We only use this to reply to you, or to tell you once when The Fold opens. It goes to one inbox, ours. Netlify, the service that runs this site, keeps a copy until we delete it. It's never shared or sold, and we'll delete it whenever you ask: <a href="mailto:hello@thefoldapp.com">hello@thefoldapp.com</a>.</p>
+<p class="fine">We only use this to reply to you, or to tell you once when The Fold opens. It goes to one inbox, ours. Netlify, the service that runs this site, keeps a copy until we delete it and screens it for spam. It's never shared or sold, and we'll delete it whenever you ask: <a href="mailto:hello@thefoldapp.com">hello@thefoldapp.com</a>.</p>
 </form>
 </div>
 </section>
