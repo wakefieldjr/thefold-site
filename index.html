@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fold: party apps plan a night. This one remembers it.</title>
+<meta name="description" content="The Fold plans your gatherings with you, then remembers what worked, so the next one starts there. Invite-only, for now.">
+<meta name="theme-color" content="#16181c">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="page">
+<div class="grid">
+<header class="top">
+<svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="356.39" cy="410.58" r="47.62" fill="#F3B07A"/><circle cx="197.73" cy="430.87" r="42.5" fill="#C7B4FF"/><circle cx="82.95" cy="319.47" r="42.5" fill="#D9CCFF"/><circle cx="98.48" cy="160.28" r="42.5" fill="#FFFFFF"/><circle cx="232.63" cy="73.17" r="42.5" fill="#EAE4FF"/><circle cx="384.37" cy="123.73" r="42.5" fill="#EAE4FF"/><circle cx="439.45" cy="273.9" r="42.5" fill="#D9CCFF"/></svg>
+<a class="word" href="/">The Fold</a>
+</header>
+<main class="intro">
+<p class="tag"><i></i>Invite-only, for now</p>
+<h1>Party apps plan a night. This one remembers it.</h1>
+<p class="lede">The Fold plans your gatherings with you, from the guest list to the prep to the run of the night. Then it remembers what worked, so the next one starts there.</p>
+</main>
+<div class="strip" role="region" aria-label="Screens from the app" tabindex="0">
+<figure>
+<!-- Placeholder until the real preview-app screenshot exists. Replace the div with:
+     <img class="shot" src="/screens/home.png" width="1170" height="2532" alt="…"> -->
+<div class="ph"><b>Screenshot to come</b><span>Home, with a recurring gathering and its flyer</span></div>
+<figcaption><strong>Every gathering is a series.</strong>The next one is always waiting.</figcaption>
+</figure>
+<figure>
+<div class="ph"><b>Screenshot to come</b><span>A chapter's Plan, with the Last time card</span></div>
+<figcaption><strong>It remembers.</strong>What ran out, who came, and what you'd change.</figcaption>
+</figure>
+<figure>
+<div class="ph"><b>Screenshot to come</b><span>Guests, with the waves and the coming count</span></div>
+<figcaption><strong>Invite in waves.</strong>Your closest people first, then the mix.</figcaption>
+</figure>
+</div>
+<section class="side" id="join" aria-labelledby="join-h">
+<div class="msg">
+<h2 id="join-h">A small first circle of hosts.</h2>
+<p>This season The Fold is open to people who already host often and will tell us honestly what works. Ask to be one of them, or join the waitlist and we'll let you know when it opens to everyone.</p>
+</div>
+<div class="card" id="card">
+<form name="join" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company" id="joinForm">
+<input type="hidden" name="form-name" value="join">
+<p class="sr" aria-hidden="true"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
+<fieldset>
+<legend class="sr">What would you like?</legend>
+<div class="seg">
+<label><input type="radio" name="want" value="Host this season" checked>Host this season</label>
+<label><input type="radio" name="want" value="Join the waitlist">Join the waitlist</label>
+</div>
+</fieldset>
+<p class="note" id="note" aria-live="polite">Use it for a gathering you're already planning, starting in November.</p>
+<label class="field"><span>Your name</span><input type="text" name="name" autocomplete="name" required maxlength="120"></label>
+<label class="field"><span>Email or phone</span><input type="text" name="contact" autocomplete="email" inputmode="email" required minlength="5" maxlength="200" aria-describedby="contact-help"><small class="help" id="contact-help">So we can reply to you.</small></label>
+<label class="field"><span>What do you host? <em id="optional" hidden>(optional)</em></span><textarea name="hosts" id="hosts" required maxlength="1000" placeholder="A monthly dinner, game night, a big Halloween party…"></textarea></label>
+<p class="err" id="err" role="alert" hidden>That didn't go through. Please try again, or write to <a href="mailto:hello@thefoldapp.com">hello@thefoldapp.com</a>.</p>
+<button class="btn" type="submit" id="submit">Request an invite</button>
+<p class="fine">We only use this to reply to you, or to tell you once when The Fold opens. It goes to one inbox, ours. Netlify, the service that runs this site, keeps a copy until we delete it. It's never shared or sold, and we'll delete it whenever you ask: <a href="mailto:hello@thefoldapp.com">hello@thefoldapp.com</a>.</p>
+</form>
+</div>
+</section>
+</div>
+<footer>The Fold is made by Hillspire IT Solutions, LLC. · <a href="https://hillspiresolutions.com">Privacy</a> · <a href="https://hillspiresolutions.com">Terms</a></footer>
+</div>
+<script>
+(function () {
+  var form = document.getElementById('joinForm');
+  var note = document.getElementById('note');
+  var hosts = document.getElementById('hosts');
+  var optional = document.getElementById('optional');
+  var submit = document.getElementById('submit');
+  var err = document.getElementById('err');
+  var copy = {
+    'Host this season': { note: "Use it for a gathering you're already planning, starting in November.", btn: 'Request an invite' },
+    'Join the waitlist': { note: 'Hear from us once, when The Fold opens to everyone.', btn: 'Join the waitlist' }
+  };
+  function sync() {
+    var want = form.elements.want.value;
+    var host = want === 'Host this season';
+    note.textContent = copy[want].note;
+    submit.textContent = copy[want].btn;
+    hosts.required = host;
+    optional.hidden = host;
+  }
+  form.addEventListener('change', function (e) { if (e.target.name === 'want') sync(); });
+  sync();
+
+  form.addEventListener('submit', function (e) {
+    if (!window.fetch) return;
+    e.preventDefault();
+    err.hidden = true;
+    submit.disabled = true;
+    var host = form.elements.want.value === 'Host this season';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      var card = document.getElementById('card');
+      card.innerHTML = host
+        ? '<div class="done" tabindex="-1"><h2>Thank you. We’ve got it.</h2><p>We read every request ourselves and we’ll be in touch.</p></div>'
+        : '<div class="done" tabindex="-1"><h2>You’re on the list.</h2><p>We’ll write once, when The Fold opens, and not before.</p></div>';
+      card.firstChild.focus();
+    }).catch(function () {
+      err.hidden = false;
+      submit.disabled = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>
